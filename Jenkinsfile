@@ -13,11 +13,7 @@
 
 //DECLERATIVE PIPELINE
 pipeline {
-    agent { 
-        docker { 
-            image 'alpine:3.18'
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {

@@ -49,6 +49,23 @@ pipeline {
                 echo "Integration Test"
             }
         }
+		stage('Docker Build') {
+            steps {
+                script {
+					docker.build("sharmanayan/currency-exchange:${env.BUILD_TAG}")
+				}
+            }
+        }
+		stage('Docker Push') {
+            steps {
+                script {
+					docker.withRegistry('', 'dockerhub') {
+						dockerImage.push();
+						dockerImage.push('latest');
+					}
+				}
+            }
+        }
     }
 
     post {

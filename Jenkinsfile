@@ -1,3 +1,4 @@
+// SCRIPTED
 // node {
 // 	stage('Build') {
 // 		echo "Build"
@@ -9,6 +10,8 @@
 // 		echo "Test"
 // 	}
 // }
+
+//DECLERATIVE PIPELINE
 pipeline {
 	agent any
 	stages {
@@ -26,6 +29,16 @@ pipeline {
 			steps {
 				echo "Integration test"
 			}
+		}
+	} post {
+		always {
+			echo 'Im Awesome'
+		}
+		success {
+			echo 'Im Successful'
+		}
+		failure {
+			echo 'I Failed'
 		}
 	}	
 }
